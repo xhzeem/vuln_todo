@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card" style="margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center;">
+    <div>
+        <h1 class="title">My Dashboard</h1>
+        <p class="subtitle" style="margin-bottom: 0;">Welcome back, {{ username }}</p>
+    </div>
+    <a href="/task/add" class="btn">New Task</a>
+</div>
+
+<div class="task-grid">
+    {% for task in tasks %}
+    <div class="task-card">
+        <h3 class="task-title">{{ task['title'] }}</h3>
+        <!-- Vulnerability: Stored XSS here. Unescaped render. -->
+        <p class="task-desc">{{ task['description'] | safe }}</p>
+    </div>
+    {% else %}
+    <div class="task-card" style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
+        <h3 class="task-title" style="color: var(--text-muted)">No tasks found</h3>
+        <p class="task-desc">You're all caught up! Enjoy your day.</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

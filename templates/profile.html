@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card" style="max-width: 800px; margin: 0 auto;">
+    <h1 class="title">User Profile</h1>
+    <p class="subtitle">Manage your account settings and personal bio.</p>
+
+    <div
+        style="background: rgba(0,0,0,0.2); padding: 2rem; border-radius: 0.5rem; margin-bottom: 2rem; border-left: 4px solid var(--primary);">
+        <h3 style="margin-top:0;">Your Public Bio</h3>
+        <!-- Vulnerability: This is rendered using render_template_string in the backend -->
+        <div style="font-size: 1.1rem; line-height: 1.6;">{{ bio | safe }}</div>
+    </div>
+
+    <hr style="border-color: var(--border); margin: 2rem 0;">
+
+    <h3>Update Bio</h3>
+    <form method="POST" action="/profile">
+        <div class="form-group">
+            <label for="bio">Bio Content (Jinja Templates Supported for dynamic variables)</label>
+            <textarea id="bio" name="bio">{{ raw_bio }}</textarea>
+            <small style="color: var(--text-muted); display: block; margin-top: 0.5rem;">Example: Hello {{ username
+                }}!</small>
+        </div>
+        <button type="submit" class="btn">Update Profile</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Not Found - Nexus</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .error-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .error-code {
+            font-size: 6rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0;
+            line-height: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="error-container">
+        <div>
+            <h1 class="error-code">404</h1>
+            <h2 class="title" style="margin-top: 1rem;">Page Not Found</h2>
+            <p class="subtitle">The quantum routing failed to locate this resource.</p>
+            <a href="/" class="btn">Return to Safety</a>
+        </div>
+    </div>
+</body>
+
+</html>
